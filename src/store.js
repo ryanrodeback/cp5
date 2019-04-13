@@ -7,7 +7,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: null,
-    photos: []
+    photos: [],
+    singlePhoto: {},
+    comments: []
   },
   mutations: {
     setUser(state, user) {
@@ -15,6 +17,12 @@ export default new Vuex.Store({
     },
     setPhotos(state, photos) {
       state.photos = photos;
+    },
+    setSinglePhoto(state, singlePhoto) {
+      state.singlePhoto = singlePhoto;
+    },
+    setComments(state, comments) {
+      state.comments = comments;
     }
   },
   actions: {
@@ -80,5 +88,31 @@ export default new Vuex.Store({
         return "";
       }
     },
+    async getSinglePhoto(context, id) {
+      try {
+        let response = await axios.get("/api/photos/" + id);
+        context.commit('setSinglePhoto', response.data);
+        return "";
+      } catch (error) {
+        return "";
+      }
+    },
+    async addComment(context, data) {
+      try {
+        await axios.post("/api/comments", data);
+        return "";
+      } catch (error) {
+        return error.response.data.message;
+      }
+    },
+    async getComments(context) {
+      try {
+        let response = await axios.get("/api/comments/");
+        context.commit('setComments', response.data);
+        return response;
+      } catch (error) {
+        return "";
+      }
+    }
   }
 })

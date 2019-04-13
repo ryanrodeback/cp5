@@ -1,12 +1,14 @@
 <template>
 <div>
   <div class="image" v-for="photo in photos" v-bind:key="photo._id">
-    <img :src="photo.path" />
-    <p class="photoTitle">{{photo.title}}</p>
+<router-link :to="{ name: 'photo', params: { id: photo._id , path: photo.path}}">
+  <img :src="photo.path" />
+</router-link>
+<p class="photoTitle">{{photo.title}}</p>
     <p class="photoDate">
       <span v-if="photo.user.name">{{photo.user.name}}, </span>
       {{formatDate(photo.created)}}
-    </p>    
+    </p>
     <p>{{photo.description}}</p>
   </div>
 </div>
