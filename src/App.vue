@@ -1,4 +1,6 @@
 <template>
+<html>
+<body>
 <div id="app">
   <div class="pure-menu">
     <span class="pure-menu-heading">Photo Bomb</span>
@@ -14,7 +16,13 @@
   <div class="content">
     <router-view />
   </div>
+
 </div>
+</body>
+<footer class="gitHubfooter">
+  <a href="https://github.com/BYU-CS-260-Winter-2019/lab-5-ryanrodeback" rel="noopener noreferrer" target="_blank">Created by Ryan Rodeback</a>
+</footer>
+</html>
 </template>
 
 <style>
@@ -161,5 +169,27 @@ body {
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+
+
+
+html {
+  position: relative !important;
+  min-height: 100% !important;
+}
+
+body {
+  height: 100%;
+  /* Margin bottom by footer height */
+  margin-bottom: 20px;
+}
+.gitHubfooter {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 20px;
+  line-height: 20px;
+  /* Vertically center the text there */
 }
 </style>
