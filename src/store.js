@@ -105,7 +105,7 @@ export default new Vuex.Store({
         return error.response.data.message;
       }
     },
-    async getComments(context) {
+    async getComments(context, photo) {
       try {
         let response = await axios.get("/api/comments/");
         context.commit('setComments', response.data);

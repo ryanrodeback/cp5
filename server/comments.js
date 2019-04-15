@@ -47,7 +47,7 @@ router.get("/", async (req, res) => {
   try {
     let comments = await Comment.find().sort({
       created: -1
-    }).populate('photo');
+    }).populate('photo').populate('user');
     return res.send(comments);
   } catch (error) {
     console.log(error);

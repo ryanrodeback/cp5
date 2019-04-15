@@ -16,9 +16,14 @@
 
 
   <div v-for="comment in comments" v-bind:key="comment._id">
-    <p>{{comment.comment}}</p>
-
+    <p>
+      {{comment.comment}}
+      <em>--- <span> {{comment.user.name}}, </span>
+      {{formatDate(comment.created)}} </em>
+    </p>
   </div>
+
+  <hr>
 
   <form v-if="user" @submit.prevent="addComment">
     <p>Comment</p>
@@ -52,7 +57,7 @@ export default {
     }
   },
   watch: {
-    
+
   },
   computed: {
     singlePhoto() {
@@ -62,10 +67,14 @@ export default {
       return this.$store.state.user;
     },
     comments() {
-      console.log("!!!!!!!!");
-      console.log(this.$store.state.comments);
-      console.log("!!!!!!!!!");
-      return this.$store.state.comments;
+      let newComments = [];
+      for (let x of this.$store.state.comments) {
+        if (x.photo.path === this.singlePhoto.path) {
+          newComments.push(x);
+        }
+       }
+       return newComments;
+
     }
 
   },
@@ -87,6 +96,7 @@ export default {
           photo: this.singlePhoto,
           comment: this.comment,
         });
+        this.comment = "";
         if (this.error === "")
           this.$router.push('photo');
       } catch (error) {
