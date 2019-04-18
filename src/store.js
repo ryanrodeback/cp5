@@ -7,26 +7,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: null,
-    photos: [],
-    singlePhoto: {},
-    comments: [],
     stocks: []
   },
   mutations: {
     setUser(state, user) {
       state.user = user;
     },
-    setPhotos(state, photos) {
-      state.photos = photos;
-    },
     setStocks(state, stocks) {
       state.stocks = stocks;
-    },
-    setSinglePhoto(state, singlePhoto) {
-      state.singlePhoto = singlePhoto;
-    },
-    setComments(state, comments) {
-      state.comments = comments;
     }
   },
   actions: {
@@ -66,34 +54,7 @@ export default new Vuex.Store({
         return "";
       }
     },
-    async upload(context, data) {
-      try {
-        await axios.post('/api/photos', data);
-        return "";
-      } catch (error) {
-        return error.response.data.message;
-      }
-    },
-    async getMyPhotos(context) {
-      try {
-        let response = await axios.get("/api/photos");
-        context.commit('setPhotos', response.data);
-        return "";
-      } catch (error) {
-        return "";
-      }
-    },
-    async getAllPhotos(context) {
-      try {
-        let response = await axios.get("/api/photos/all");
-        context.commit('setPhotos', response.data);
-        return "";
-      } catch (error) {
-        return "";
-      }
-    },
     async getAllStocks(context) {
-      console.log("getAllStocks");
       try {
         let response = await axios.get("/api/stock");
         context.commit('setStocks', response.data);
@@ -104,8 +65,6 @@ export default new Vuex.Store({
     },
     async addStock(context, data) {
       console.log("addStock");
-      console.log(data);
-
       try {
         await axios.post("/api/stock", data);
         return "";
@@ -115,7 +74,6 @@ export default new Vuex.Store({
     },
     async sellStock(context, data) {
       console.log("sellStock");
-      console.log(data);
       try {
         await axios.delete("/api/stock/" + data._id);
         return "";

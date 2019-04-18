@@ -19,7 +19,6 @@ const Item = mongoose.model('Item', itemSchema);
 
 // Create a new stock in the portfolio: takes a ticker and an amount.
 router.post('/', async (req, res) => {
-  console.log("ADD " + req.body.ticker);
   const item = new Item({
     ticker: req.body.ticker,
     amount: req.body.amount,
@@ -46,7 +45,6 @@ router.get('/', async (req, res) => {
 
 // Delete an item
 router.delete('/:id', async (req, res) => {
-  console.log("Sell " + req.params.id);
   try {
     await Item.deleteOne({
       _id: req.params.id
