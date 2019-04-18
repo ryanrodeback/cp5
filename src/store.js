@@ -9,7 +9,8 @@ export default new Vuex.Store({
     user: null,
     photos: [],
     singlePhoto: {},
-    comments: []
+    comments: [],
+    stocks: []
   },
   mutations: {
     setUser(state, user) {
@@ -17,6 +18,9 @@ export default new Vuex.Store({
     },
     setPhotos(state, photos) {
       state.photos = photos;
+    },
+    setStocks(state, stocks) {
+      state.stocks = stocks;
     },
     setSinglePhoto(state, singlePhoto) {
       state.singlePhoto = singlePhoto;
@@ -88,31 +92,37 @@ export default new Vuex.Store({
         return "";
       }
     },
-    async getSinglePhoto(context, id) {
+    async getAllStocks(context) {
+      console.log("getAllStocks");
       try {
-        let response = await axios.get("/api/photos/" + id);
-        context.commit('setSinglePhoto', response.data);
+        let response = await axios.get("/api/stock");
+        context.commit('setStocks', response.data);
         return "";
       } catch (error) {
         return "";
       }
     },
-    async addComment(context, data) {
+    async addStock(context, data) {
+      console.log("addStock");
+      console.log(data);
+
       try {
-        await axios.post("/api/comments", data);
+        await axios.post("/api/stock", data);
         return "";
       } catch (error) {
         return error.response.data.message;
       }
     },
-    async getComments(context, photo) {
+    async sellStock(context, data) {
+      console.log("sellStock");
+      console.log(data);
       try {
-        let response = await axios.get("/api/comments/");
-        context.commit('setComments', response.data);
-        return response;
-      } catch (error) {
+        await axios.delete("/api/stock/" + data._id);
         return "";
+      } catch (error) {
+        return error.response.data.message;
       }
-    }
+    },
+
   }
 })

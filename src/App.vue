@@ -3,13 +3,13 @@
 <body>
 <div id="app">
   <div class="pure-menu">
-    <span class="pure-menu-heading">Photo Bomb</span>
+    <span class="pure-menu-heading">Market Info</span>
     <ul class="pure-menu-list">
       <li class="pure-menu-item">
-        <router-link to="/" class="pure-menu-link">Home</router-link>
+        <router-link to="/" class="pure-menu-link">Annual Chart</router-link>
       </li>
       <li class="pure-menu-item">
-        <router-link to="/mypage" class="pure-menu-link">My Page</router-link>
+        <router-link to="/mypage" class="pure-menu-link">My Holdings</router-link>
       </li>
     </ul>
   </div>
@@ -20,7 +20,7 @@
 </div>
 </body>
 <footer class="gitHubfooter">
-  <a href="https://github.com/BYU-CS-260-Winter-2019/lab-5-ryanrodeback" rel="noopener noreferrer" target="_blank">Created by Ryan Rodeback</a>
+  <a href="https://github.com/ryanrodeback/cp5" rel="noopener noreferrer" target="_blank">Created by Ryan Rodeback</a>
 </footer>
 </html>
 </template>
@@ -49,7 +49,7 @@
   color: #fff;
   font-size: 1.2em;
   padding: 20px 20px;
-  background-color: #F2385A;
+  background-color: blue;
   margin-bottom: 10px;
 }
 

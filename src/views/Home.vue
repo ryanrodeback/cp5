@@ -1,17 +1,15 @@
 <template>
 <div class="home">
-  <image-gallery :photos="photos" />
+  <img id="InvestmentChart" src="/InvestmentChart.pdf">
 </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import ImageGallery from '@/components/ImageGallery.vue'
 
 export default {
   name: 'home',
   components: {
-    ImageGallery
   },
   computed: {
     photos() {
