@@ -76,6 +76,8 @@ export default {
       try {
         this.error = await this.$store.dispatch("addStock", {ticker: this.ticker,
           amount: this.amount});
+          document.location.reload(true);
+
       } catch (error) {
         console.log(error);
       }
@@ -83,6 +85,7 @@ export default {
     async sell(data) {
       try {
         this.error = await this.$store.dispatch("sellStock", data);
+        document.location.reload(true);
       } catch (error) {
         console.log(error);
       }
